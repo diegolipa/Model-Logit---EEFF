@@ -46,20 +46,24 @@ pd.crosstab(data.cuenta, data.target).plot(kind="bar")
 plt.title("Efectividad del promedio (2014-2017) del estado de resultados con respecto a las partidas")
 plt.xlabel("Partidas del estado de resultados")
 plt.ylabel("Efectividad del estado de resultados")
+
 #Efectividad del promedio (2014-2017) del estado de resultados con respecto al año
 pd.crosstab(data.anio, data.target).plot(kind="bar")
 plt.title("Efectividad del promedio del estado de resultados con respecto al año")
 plt.xlabel("Año")
 plt.ylabel("Efectividad del estado de resultados")
+
 #Efectividad del promedio (2014-2017) estado de resultados con respecto al mes
 pd.crosstab(data.mes, data.target).plot(kind="bar")
 plt.title("Efectividad del promedio (2014-2017) estado de resultados con respecto al mes")
 plt.xlabel("Mes")
 plt.ylabel("Efectividad del estado de resultados")
+
 # converción de la variable objetivo a 0 y 1.
 data["target"] = np.where(data["target"]==1, 1, data["target"])
 data["target"] = np.where(data["target"]==2, 0, data["target"])
 data["target"] = np.where(data["target"]==3, 0, data["target"])
+
 #uniendo los features y los datos para obtener las varibles predictoras
 categories = ["anio", "mes", "cuenta", "importe"]
 for category in categories:
@@ -80,6 +84,8 @@ rfe = rfe.fit(eeff_data[X], eeff_data[Y].values.ravel())
 z=zip(eeff_data_vars,rfe.support_, rfe.ranking_)
 print(list(z)) #seleccionamos varilaes con notacion (..., True, 1)
 #una vez seleccionado las varibles lo almacenamos en la varible 'clos'
+
+
 cols = ["anavertical","anio_2016","anio_2015",
 	   "cuenta_Gasto Administrativos",
 	    "cuenta_Gasto Distrib. Ventas",

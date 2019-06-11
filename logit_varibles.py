@@ -12,8 +12,8 @@ from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score
 import warnings
-warnings.filterwarnings("ignore", category=FutureWarning
-				    )
+warnings.filterwarnings("ignore", category=FutureWarning)
+
 #import data
 data = pd.read_csv("eeff.csv")
 X = np.array(data.drop(['target'],1))
@@ -24,7 +24,6 @@ model = linear_model.LogisticRegression()
 X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.20, random_state=7)
 model.fit(X_train, y_train)
 print("score del modelo cross validation:",model.score(X, y))
-
 
 #K-Fold Cross Validation
 name='Logistic Regression'
@@ -38,7 +37,6 @@ predictions = model.predict(X_test)
 print(accuracy_score(y_test, predictions))#cross validation
 print(confusion_matrix(y_test, predictions))#matriz de confucion
 print(classification_report(y_test, predictions))# reporte de clasificación
-
 
 #predicción de nuevos valores
 X_new = pd.DataFrame({
